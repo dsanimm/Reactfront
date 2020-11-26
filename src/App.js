@@ -27,19 +27,36 @@ class App extends React.Component {
     constructor() {
         super()
         this.state = {
-            title: 'hello from BridgeLabz'
+userName: '',
+nameError: ''
         }
     }
     onClick = ($event) => {
       console.log('save button is clicked',$event);
       window.open(this.url,"_blank");
     }
+    onNameChange= (event) => {
+      console.log("value is ", event.target.value);
+      let firstNamePattern = RegExp('^[A-Z]{1}[a-z]{2,}$');
+      if (firstNamePattern.test(event.target.value)) {
+      this.setState({ userName: event.target.value})
+      }
+      else
+      this.setState({ nameError: 'Invalid'})
+    }
     render() {
-        return ( <div>
-            <h1> { this.state.title } </h1>     
+        return ( 
+          <>
+        <div>
+            <h1> Hello { this.state.userName} from BridgeLabz</h1>     
             <img src = {logo} onClick={this.onClick}
             alt = "The Bridgelabz logo"/>
             </div>
+            <div>
+              <input onChange={this.onNameChange} />
+        <span className="error-output">{this.state.nameError}</span>
+            </div>
+            </>
         );
     }
 }
