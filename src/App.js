@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
+import logo from './assets/img/logo.png'
 
 /* function App() {
   return (
@@ -23,13 +23,24 @@ import './App.css';
 } */
 import React from 'react';
 class App extends React.Component {
+  url = 'https://www.bridgelabz.com/'
+    constructor() {
+        super()
+        this.state = {
+            title: 'hello from BridgeLabz'
+        }
+    }
+    onClick = ($event) => {
+      console.log('save button is clicked',$event);
+      window.open(this.url,"_blank");
+    }
     render() {
-        return ( <
-            div >
-            <
-            h1 > hello from Bridgelabz < /h1> <
-            /div>
-        )
+        return ( <div>
+            <h1> { this.state.title } </h1>     
+            <img src = {logo} onClick={this.onClick}
+            alt = "The Bridgelabz logo"/>
+            </div>
+        );
     }
 }
 
